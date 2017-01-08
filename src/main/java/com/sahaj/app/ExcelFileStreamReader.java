@@ -16,6 +16,13 @@ import java.util.List;
  */
 public class ExcelFileStreamReader implements IFileStreamReader {
 
+    /**
+     * This method creates a list for each entry in the input file. Any invalid entry
+     * in the file will be ignored.
+     * @param fileName Name of the file which is taken as input
+     * @return List of all stock transaction in ordered fashion
+     * @throws IOException
+     */
     public List<StockTransaction> readStream(String fileName) throws IOException {
         FileInputStream fileInputStream = new FileInputStream(fileName);
         HSSFWorkbook workbook = new HSSFWorkbook(fileInputStream);
@@ -27,6 +34,7 @@ public class ExcelFileStreamReader implements IFileStreamReader {
             // ignoring the headers
             rowIterator.next();
         }
+
         while(rowIterator.hasNext()){
             HSSFRow row = (HSSFRow) rowIterator.next();
             Iterator cellIterator = row.cellIterator();

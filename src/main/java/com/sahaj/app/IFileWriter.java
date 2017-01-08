@@ -8,4 +8,5 @@ import java.util.List;
  */
 public interface IFileWriter {
     void writeObject(List<StockTransaction> transactionList, String fileName)  throws IOException;
+    void writeHeader(String fileName, String header) throws IOException;
 }
